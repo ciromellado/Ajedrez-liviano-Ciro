@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#b58863">
+  <title>Ajedrez PWA</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icons/icon-192.png">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>♟ Ajedrez Liviano Ciro</h1>
+    <div class="controls">
+      <label for="level-select">Nivel:</label>
+      <select id="level-select">
+        <option value="600">🟢 Principiante (600)</option>
+        <option value="1200">🟡 Intermedio (1200)</option>
+        <option value="1300" selected>🟠 Avanzado (1300)</option>
+        <option value="1500">🔴 Experto (1500)</option>
+      </select>
+      <label for="color-select">Color:</label>
+      <select id="color-select">
+        <option value="w">⬜ Blancas</option>
+        <option value="b">⬛ Negras</option>
+        <option value="random">🎲 Aleatorio</option>
+      </select>
+      <button id="new-game">Nueva partida</button>
+    </div>
+    <div id="board" class="chess-board"></div>
+    <div id="status">Tu turno (blancas)</div>
+    <div id="move-counter" class="move-counter">Jugada: 0</div>
+    <div id="move-history" class="move-history"></div>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
