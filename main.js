@@ -81,7 +81,7 @@ function onSquareClick(square) {
     renderBoard();
     updateStatus();
     updateMoveHistory();
-    if (!chess.isGameOver()) setTimeout(requestEngineMove, 300);
+    if (!chess.isGameOver()) setTimeout(requestEngineMove, 100);
     return;
   }
   if (piece && piece.color === playerColor) {
