@@ -101,16 +101,21 @@ function renderBoard() {
 function onSquareClick(square) {
   if (chess.turn() !== playerColor || chess.isGameOver()) return;
   const piece = chess.get(square);
+  
   if (selectedSquare && legalMoves.some(m => m.to === square)) {
     const move = legalMoves.find(m => m.to === square);
     const moveInfo = chess.move(move);
-    if (moveInfo) moveHistory.push(moveInfo.san);
+    if (moveInfo) {
+      moveHistory.push(moveInfo.san);
+      initAudio(); // Desbloquea el audio en el primer clic
+      if (moveInfo.captured) playCapture(); else playMove(); // ¡Sonido!
+    }
     selectedSquare = null;
     legalMoves = [];
     renderBoard();
     updateStatus();
     updateMoveHistory();
-    if (!chess.isGameOver()) setTimeout(requestEngineMove, 100);
+    if (!chess.isGameOver()) setTimeout(requestEngineMove, 0);
     return;
   }
   if (piece && piece.color === playerColor) {
