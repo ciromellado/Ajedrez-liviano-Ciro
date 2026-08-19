@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ajedrez-v6';
+const CACHE_NAME = 'ajedrez-v7';
 const ASSETS = [
   '/',
   '/index.html',
