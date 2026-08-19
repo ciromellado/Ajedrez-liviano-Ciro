@@ -149,8 +149,8 @@ const OPENING_BOOK = {
 const LEVELS = {
   600:  { depth: 1, noise: 250, blunder: 0.25, quiescence: false, iterDeep: false, time: 50 },
   1200: { depth: 2, noise: 80,  blunder: 0.05, quiescence: false, iterDeep: false, time: 150 },
-  1300: { depth: 2, noise: 30,  blunder: 0.02, quiescence: false, iterDeep: false, time: 800 },
-  1500: { depth: 3, noise: 0,   blunder: 0.0,  quiescence: false, iterDeep: false, time: 1500 }
+  1300: { depth: 3, noise: 30,  blunder: 0.02, quiescence: false, iterDeep: false, time: 800 },
+  1500: { depth: 4, noise: 0,   blunder: 0.0,  quiescence: false, iterDeep: false, time: 1500 }
 };
 
 function getBestMove(fen, level = 1500) {
