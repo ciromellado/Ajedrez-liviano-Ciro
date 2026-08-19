@@ -136,6 +136,7 @@ function updateStatus() {
   } else if (chess.isDraw()) {
     statusEl.textContent = '🤝 Tablas';
   } else if (chess.isCheck()) {
+    playCheck();
     statusEl.textContent = '⚠️ ¡Jaque!';
   } else {
     statusEl.textContent = chess.turn() === playerColor ? 'Tu turno' : 'Turno del rival';
