@@ -1,5 +1,34 @@
 import { Chess } from 'chess.js';
+// --- MOTOR DE SONIDO (Web Audio API) ---
+let audioCtx = null;
 
+function initAudio() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+}
+
+function playTone(freq, type, duration, vol = 0.1) {
+  if (!audioCtx) return;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = type;
+  osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+  gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start();
+  osc.stop(audioCtx.currentTime + duration);
+}
+
+function playMove() { playTone(150, 'sine', 0.04, 0.3); } // Sonido grave (thud)
+function playCapture() { playTone(100, 'triangle', 0.1, 0.4); } // Sonido más fuerte (crunch)
+function playCheck() { // Doble beep de alerta
+  if (!audioCtx) return;
+  playTone(800, 'square', 0.08, 0.05);
+  setTimeout(() => playTone(800, 'square', 0.08, 0.05), 120);
+}
+// ---------------------------------------
 const chess = new Chess();
 let selectedSquare = null;
 let legalMoves = [];
