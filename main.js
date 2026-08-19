@@ -101,9 +101,9 @@ function renderBoard() {
 function onSquareClick(square) {
   if (chess.turn() !== playerColor || chess.isGameOver()) return;
   const piece = chess.get(square);
-  
-  if (selectedSquare && legalMoves.some(m => m.to === square)) {
-    const move = legalMoves.find(m => m.to === square);
+   if (selectedSquare && legalMoves.some(m => m.to === square)) {
+    let move = legalMoves.find(m => m.to === square);
+    if (move.promotion) move.promotion = 'q';
     const moveInfo = chess.move(move);
     if (moveInfo) {
       moveHistory.push(moveInfo.san);
