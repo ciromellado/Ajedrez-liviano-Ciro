@@ -132,7 +132,7 @@ function onSquareClick(square) {
 function updateStatus() {
   const statusEl = document.getElementById('status');
   if (chess.isCheckmate()) {
-    statusEl.textContent = chess.turn() === playerColor ? '😞 ¡Jaque mate! Perdiste.' : ' ¡Jaque mate! Ganaste.';
+    statusEl.textContent = chess.turn() === playerColor ? '😞 ¡Jaque mate! Perdiste.' : '🎉 ¡Jaque mate! Ganaste.';
   } else if (chess.isDraw()) {
     statusEl.textContent = '🤝 Tablas';
   } else if (chess.isCheck()) {
@@ -169,6 +169,28 @@ function updateMoveHistory() {
   }
   historyEl.scrollTop = historyEl.scrollHeight;
 }
+
+// --- EVENTO PARA DEVOLVER JUGADA ---
+document.getElementById('undo-move').addEventListener('click', () => {
+  if (chess.isGameOver()) return;
+
+  // Si estás jugando contra la máquina, normalmente se deshacen 2 movimientos (la respuesta de la IA y tu jugada)
+  if (moveHistory.length >= 2) {
+    chess.undo(); // Deshace la jugada de la IA
+    moveHistory.pop();
+    chess.undo(); // Deshace tu jugada
+    moveHistory.pop();
+  } else if (moveHistory.length === 1) {
+    chess.undo(); // Si solo hay una jugada hecha
+    moveHistory.pop();
+  }
+
+  selectedSquare = null;
+  legalMoves = [];
+  renderBoard();
+  updateStatus();
+  updateMoveHistory();
+});
 
 document.getElementById('level-select').addEventListener('change', (e) => {
   currentLevel = parseInt(e.target.value);
