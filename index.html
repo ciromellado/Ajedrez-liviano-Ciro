@@ -20,13 +20,17 @@
         <option value="1300" selected>🟠 Avanzado (1300)</option>
         <option value="1500">🔴 Experto (1500)</option>
       </select>
+      
       <label for="color-select">Color:</label>
       <select id="color-select">
         <option value="w">⬜ Blancas</option>
         <option value="b">⬛ Negras</option>
         <option value="random">🎲 Aleatorio</option>
       </select>
+      
       <button id="new-game">Nueva partida</button>
+      <!-- Botón añadido para devolver jugada -->
+      <button id="undo-move">↩ Devolver jugada</button>
     </div>
     <div id="board" class="chess-board"></div>
     <div id="status">Tu turno (blancas)</div>
